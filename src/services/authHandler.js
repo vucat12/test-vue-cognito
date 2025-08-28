@@ -5,13 +5,13 @@ import { authHandlerDev } from './authHandlerDev'
  * Authentication Handler Factory with Runtime Toggle
  * 
  * Supports both environment-based and runtime switching:
- * - Environment: VITE_AUTH_MODE ('dev' | 'cognito')
+ * - Environment: VITE_AUTH_DEV_SHIM ('dev' | 'cognito')
  * - Runtime: useAuthHandler('dev') or useAuthHandler('cognito')
  * - Console: window.APP.useAuthHandler('dev')
  */
 
 // Determine initial handler based on environment
-const authMode = import.meta.env.VITE_AUTH_MODE
+const authMode = import.meta.env.VITE_AUTH_DEV_SHIM
 const isDevelopment = import.meta.env.DEV ||
   import.meta.env.MODE === 'development' ||
   import.meta.env.NODE_ENV === 'development'
@@ -25,14 +25,14 @@ let currentHandler = shouldUseDev ? authHandlerDev : authHandlerCognito
 if (shouldUseDev) {
   console.log('[AUTH] Initial: Using development handler (bypassing Cognito)')
   if (authMode === 'dev') {
-    console.log('[AUTH] → Forced by VITE_AUTH_MODE=dev')
+    console.log('[AUTH] → Forced by VITE_AUTH_DEV_SHIM=dev')
   } else {
     console.log('[AUTH] → Auto-detected development mode')
   }
 } else {
   console.log('[AUTH] Initial: Using production Cognito handler')
   if (authMode === 'cognito') {
-    console.log('[AUTH] → Forced by VITE_AUTH_MODE=cognito')
+    console.log('[AUTH] → Forced by VITE_AUTH_DEV_SHIM=cognito')
   } else {
     console.log('[AUTH] → Auto-detected production mode')
   }
