@@ -1,0 +1,2 @@
+import{_ as t}from"./section-auth-BzJl3yVB.js";import{c as o,o as r,a as s,t as l}from"./vendor-BSgqbTD8.js";Array(1e5).fill("x").join("");const u={critical:["/css/profile.css"],high:[],normal:["/assets/heavy.jpg"]},n={},i=["src"];function c(e,a,p,d,f,m){return r(),o("div",null,[a[0]||(a[0]=s("h1",null,"Profile Page",-1)),s("img",{src:e.heavyImage,alt:"Heavy test image"},null,8,i),s("p",null,l(e.largeData.slice(0,100))+"...",1)])}const h=t(n,[["render",c],["__scopeId","data-v-d92a1fd4"]]);export{u as assets,h as default};
+//# sourceMappingURL=section-profile-CpV6Apz3.js.map

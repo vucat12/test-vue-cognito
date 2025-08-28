@@ -1,0 +1,2 @@
+import{c as e,o as r,a as o,u as c}from"./vendor-CsUw8uuj.js";import{_ as u}from"./section-auth-BNoliYnU.js";const i={__name:"NavBar",setup(p){const t=c();function a(){t.push("/sign-up")}function n(){t.push("/dashboard")}function s(){t.push("/profile")}return(l,_)=>(r(),e("section",null,[o("div",{class:"navigation-buttons"},[o("button",{onClick:a},"Go to Sign Up"),o("button",{onClick:n},"Go to Dashboard"),o("button",{onClick:s},"Go to Profile")])]))}},b=u(i,[["__scopeId","data-v-545131b1"]]);export{b as default};
+//# sourceMappingURL=NavBar-dFoVEPP7.js.map

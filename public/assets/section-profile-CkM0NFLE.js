@@ -1,0 +1,2 @@
+import{_ as e}from"./section-auth-BNoliYnU.js";import{c as o,o as t,a}from"./vendor-CsUw8uuj.js";const m={critical:["/css/profile.css"],high:[],normal:["/assets/heavy.jpg"]},r={};function c(n,s,i,l,p,d){return t(),o("div",null,s[0]||(s[0]=[a("h1",null,"Profile Page",-1)]))}const u=e(r,[["render",c],["__scopeId","data-v-905081b9"]]);export{m as assets,u as default};
+//# sourceMappingURL=section-profile-CkM0NFLE.js.map

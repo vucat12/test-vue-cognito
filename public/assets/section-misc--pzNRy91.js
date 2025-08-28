@@ -1,0 +1,2 @@
+import{_ as t}from"./section-auth-BzJl3yVB.js";import{c as n,a as e,o as s}from"./vendor-BSgqbTD8.js";const m={critical:[],high:[],normal:[]},a={};function r(c,o,l,u,p,d){return s(),n("main",null,o[0]||(o[0]=[e("h1",null,"404 — Not Found",-1),e("p",null,"The page you requested cannot be found.",-1)]))}const _=t(a,[["render",r]]);export{m as assets,_ as default};
+//# sourceMappingURL=section-misc--pzNRy91.js.map

@@ -1,0 +1,531 @@
+[
+  {
+    "slug": "/",
+    "redirect": "/log-in",
+    "section": "auth",
+    "preLoadSections": []
+  },
+  {
+    "slug": "/log-in",
+    "section": "auth",
+    "requiresAuth": false,
+    "redirectIfLoggedIn": "/dashboard",
+    "supportedRoles": [],
+    "componentPath": "@/components/auth/log-in.vue",
+    "preLoadSections": ["dashboard"]
+  },
+  {
+    "slug": "/sign-up",
+    "section": "auth",
+    "requiresAuth": false,
+    "redirectIfLoggedIn": "/dashboard",
+    "supportedRoles": [],
+    "componentPath": "@/components/auth/sign-up.vue",
+    "preLoadSections": ["dashboard"]
+  },
+  {
+    "slug": "/sign-up/onboarding",
+    "section": "auth",
+    "requiresAuth": true,
+    "redirectIfNotAuth": "/log-in",
+    "supportedRoles": ["creator"],
+    "componentPath": "@/components/auth/sign-up-onboarding.vue",
+    "preLoadSections": ["dashboard"],
+    "dependencies": {
+      "roles": {
+        "creator": {
+          "kycPassed": {
+            "required": false,
+            "fallbackSlug": "/dashboard"
+          }
+        }
+      }
+    }
+  },
+  {
+    "slug": "/sign-up/onboarding/kyc",
+    "section": "auth",
+    "requiresAuth": true,
+    "redirectIfNotAuth": "/log-in",
+    "supportedRoles": ["creator"],
+    "componentPath": "@/components/auth/sign-up-onboarding-kyc.vue",
+    "preLoadSections": ["dashboard"],
+    "dependencies": {
+      "roles": {
+        "creator": {
+          "kycPassed": {
+            "required": false,
+            "fallbackSlug": "/dashboard"
+          }
+        }
+      }
+    }
+  },
+  {
+    "slug": "/sign-up/onboarding/kyc/status",
+
+    "section": "auth",
+    "requiresAuth": true,
+    "redirectIfNotAuth": "/log-in",
+    "supportedRoles": ["creator"],
+    "componentPath": "@/components/auth/sign-up/onboarding-kyc-status.vue",
+    "preLoadSections": ["dashboard"],
+    "dependencies": {
+      "roles": {
+        "creator": {
+          "kycPassed": {
+            "required": false,
+            "fallbackSlug": "/dashboard"
+          }
+        }
+      }
+    }
+  },
+  {
+    "slug": "/lost-password",
+    "section": "auth",
+    "redirectIfLoggedIn": "/dashboard",
+    "requiresAuth": false,
+    "supportedRoles": [],
+    "componentPath": "@/components/auth/lost-password.vue",
+    "preLoadSections": ["dashboard"]
+  },
+  {
+    "slug": "/reset-password",
+    "section": "auth",
+    "requiresAuth": false,
+    "redirectIfLoggedIn": "/dashboard",
+    "supportedRoles": [],
+    "componentPath": "@/components/auth/reset-password.vue",
+    "preLoadSections": ["dashboard"]
+  },
+  {
+    "slug": "/confirm-email",
+    "section": "auth",
+    "requiresAuth": false,
+    "redirectIfLoggedIn": "/dashboard",
+    "supportedRoles": [],
+    "componentPath": "@/components/auth/confirm-email.vue",
+    "preLoadSections": ["dashboard"]
+  },
+  {
+    "slug": "/dashboard",
+    "section": "dashboard",
+    "requiresAuth": true,
+    "supportedRoles": ["any"],
+    "redirectIfNotAuth": "/log-in",
+    "componentPath": "@/components/dashboard/index.vue",
+    "dependencies": {
+      "roles": {
+        "creator": {
+          "onboardingPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding"
+          },
+          "kycPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding/kyc"
+          }
+        },
+        "vendor": {
+          "onboardingPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding"
+          }
+        },
+        "agent": {
+          "onboardingPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding"
+          }
+        }
+      }
+    },
+    "preLoadSections": ["profile"],
+    "redirect": "/dashboard/overview"
+  },
+  {
+    "slug": "/dashboard/overview",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/dashboardOverviewCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/dashboardOverviewVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/dashboardOverviewCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/dashboardOverviewAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/fan-media",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/fanMediaCreator.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/fanMediaCustomer.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/my-media",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/myMediaCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/myMediaVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/myMediaCustomer.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/edit-profile",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/dashboardEditProfileCreator.vue"
+      }
+    }
+  },
+    {
+    "slug": "/dashboard/edit-settings",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/dashboardEditSettingsCreator.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/shop/custom-product-request",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/shop/customProductRequestCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/shop/customProductRequestVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/shop/customProductRequestCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/shop/customProductRequestAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/shop/purchases",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/shop/purchasesVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/shop/purchasesCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/shop/purchasesAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/chats",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/chatsCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/chatsVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/chatsCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/chatsAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/subscriptions",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/subscriptionsCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/subscriptionsVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/subscriptionsCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/subscriptionsAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/following",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/followingCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/followingVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/followingCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/followingAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/followers",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/followersCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/followersVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/followersCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/followersAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/settings/account",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/settings/accountCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/settings/accountVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/settings/accountCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/settings/accountAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/settings/addresses",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/settings/addressesCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/settings/addressesVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/settings/addressesCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/settings/addressesAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/settings/newsletter",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/settings/newsletterCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/settings/newsletterVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/settings/newsletterCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/settings/newsletterAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/payout",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/payoutCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/payoutVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/payoutCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/payoutAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/notification-preferences",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/notificationPreferencesCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/notificationPreferencesVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/notificationPreferencesCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/notificationPreferencesAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/settings/private-chat",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/settings/privateChatCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/settings/privateChatVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/settings/privateChatCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/settings/privateChatAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/dashboard/settings/subscription",
+    "section": "dashboard",
+    "inheritConfigFromParent": true,
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/components/dashboard/settings/subscriptionCreator.vue"
+      },
+      "vendor": {
+        "componentPath": "@/components/dashboard/settings/subscriptionVendor.vue"
+      },
+      "customer": {
+        "componentPath": "@/components/dashboard/settings/subscriptionCustomer.vue"
+      },
+      "agent": {
+        "componentPath": "@/components/dashboard/settings/subscriptionAgent.vue"
+      }
+    }
+  },
+  {
+    "slug": "/profile",
+    "section": "profile",
+    "requiresAuth": false,
+    "supportedRoles": ["any"],
+    "componentPath": "@/components/profile/index.vue",
+    "preLoadSections": []
+  },
+  {
+    "slug": "/discover",
+    "section": "discover",
+    "requiresAuth": true,
+    "supportedRoles": ["all"],
+    "redirectIfNotAuth": "/log-in",
+    "componentPath": "@/components/discover/index.vue",
+    "dependencies": {
+      "onboardingRequired": {
+        "fallbackSlug": "/onboarding"
+      }
+    }
+  },
+  {
+    "slug": "/shop",
+    "requiresAuth": true,
+    "section": "shop",
+    "supportedRoles": ["all"],
+    "redirectIfNotAuth": "/log-in",
+    "componentPath": "@/components/shop/index.vue",
+    "dependencies": {
+      "onboardingRequired": {
+        "fallbackSlug": "/onboarding"
+      }
+    }
+  },
+  {
+    "slug": "/shop/@:username/products/:title",
+    "section": "shop",
+    "requiresAuth": true,
+    "supportedRoles": ["all"],
+    "redirectIfNotAuth": "/log-in",
+    "componentPath": "@/components/shop/_username/products/_title.vue",
+    "dependencies": {
+      "onboardingRequired": {
+        "fallbackSlug": "/onboarding"
+      }
+    }
+  },
+  {
+    "slug": "/@:username",
+    "section": "shop",
+    "requiresAuth": false,
+    "dynamicRoute": true,
+    "componentPath": "@/components/_username.vue",
+    "dependencies": {
+      "checkUsernameInDB": true
+    }
+  },
+  {
+    "slug": "/404",
+    "section": "misc",
+    "requiresAuth": false,
+    "supportedRoles": [],
+    "componentPath": "@/components/NotFound.vue",
+    "preLoadSections": []
+  },
+  {
+    "slug": "/:pathMatch(.*)*",
+    "redirect": "/404"
+  }
+]

@@ -1,0 +1,2 @@
+import{_ as o}from"./section-auth-BNoliYnU.js";import{c as t,o as r,a as e}from"./vendor-CsUw8uuj.js";const u={critical:["/css/profile.css"],high:[],normal:["/assets/heavy.jpg"]},c={},n=["src"];function l(a,s,i,p,d,f){return r(),t("div",null,[s[0]||(s[0]=e("h1",null,"Profile Page",-1)),e("img",{src:a.heavy,alt:"Heavy Image"},null,8,n)])}const g=o(c,[["render",l],["__scopeId","data-v-1b9fda88"]]);export{u as assets,g as default};
+//# sourceMappingURL=section-profile-aPJNzJui.js.map

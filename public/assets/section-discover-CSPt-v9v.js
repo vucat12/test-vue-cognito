@@ -1,0 +1,2 @@
+import{_ as r}from"./section-auth-BzJl3yVB.js";import{c as s,o as t,a as o}from"./vendor-BSgqbTD8.js";const u={critical:[],high:[],normal:["/img/discover-hero.jpg"]},n={};function a(c,e,i,l,p,m){return t(),s("main",null,e[0]||(e[0]=[o("h1",null,"Discover",-1),o("p",null,"Discover page",-1)]))}const _=r(n,[["render",a]]);export{u as assets,_ as default};
+//# sourceMappingURL=section-discover-CSPt-v9v.js.map
