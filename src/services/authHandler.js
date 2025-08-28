@@ -69,7 +69,7 @@ export function useAuthHandler(type) {
 
 // Export a dynamic handler that always points to the current one
 export const authHandler = {
-  ...currentHandler,
+  ...authHandlerCognito,
   login: (...args) => currentHandler.login(...args),
   signup: (...args) => currentHandler.signup(...args),
   logout: (...args) => currentHandler.logout(...args),
