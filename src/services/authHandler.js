@@ -43,6 +43,8 @@ export function getAuthHandler() {
 }
 
 export function useAuthHandler(type) {
+  const previousHandler = currentHandler === authHandlerDev ? 'dev' : 'cognito'
+
   if (type === 'dev') {
     currentHandler = authHandlerDev
     console.log('[AUTH] Switched to: Development handler (bypassing Cognito)')
@@ -53,11 +55,31 @@ export function useAuthHandler(type) {
     console.warn('[AUTH] Invalid handler type. Use "dev" or "cognito"')
     return currentHandler
   }
+
+  // Log the change if it actually switched
+  if (previousHandler !== type) {
+    console.log(`[AUTH] Handler changed: ${previousHandler} → ${type}`)
+    console.log('[AUTH] ✅ Next auth calls will use the new handler')
+  } else {
+    console.log(`[AUTH] Handler already set to: ${type}`)
+  }
+
   return currentHandler
 }
 
-// Export default handler for backward compatibility
-export const authHandler = getAuthHandler()
+// Export a dynamic handler that always points to the current one
+export const authHandler = {
+  login: (...args) => currentHandler.login(...args),
+  signup: (...args) => currentHandler.signup(...args),
+  logout: (...args) => currentHandler.logout(...args),
+  restoreSession: (...args) => currentHandler.restoreSession(...args),
+  handleCallback: (...args) => currentHandler.handleCallback(...args),
+  refreshToken: (...args) => currentHandler.refreshToken(...args),
+  getCurrentUser: (...args) => currentHandler.getCurrentUser(...args),
+  validateToken: (...args) => currentHandler.validateToken(...args),
+  // Dev-only methods (will only work when dev handler is active)
+  mockUserRole: (...args) => currentHandler.mockUserRole?.(...args),
+}
 
 // Re-export for explicit imports if needed
 export { authHandlerDev, authHandlerCognito }
@@ -75,9 +97,27 @@ if (typeof window !== 'undefined') {
     return current
   }
 
+  // Add test function to verify toggle works
+  window.APP.testAuthToggle = async () => {
+    console.log('[AUTH] Testing auth handler toggle...')
+
+    // Test dev mode
+    window.APP.useAuthHandler('dev')
+    console.log('[AUTH] Dev mode - getCurrentUser:', typeof authHandler.getCurrentUser)
+    console.log('[AUTH] Dev mode - mockUserRole:', typeof authHandler.mockUserRole)
+
+    // Test cognito mode  
+    window.APP.useAuthHandler('cognito')
+    console.log('[AUTH] Cognito mode - getCurrentUser:', typeof authHandler.getCurrentUser)
+    console.log('[AUTH] Cognito mode - mockUserRole:', typeof authHandler.mockUserRole)
+
+    console.log('[AUTH] ✅ Toggle test complete')
+  }
+
   console.log('[AUTH] Console commands available:')
   console.log('  window.APP.useAuthHandler("dev")     - Switch to dev mode')
   console.log('  window.APP.useAuthHandler("cognito") - Switch to Cognito mode')
   console.log('  window.APP.getCurrentAuthMode()      - Show current mode')
+  console.log('  window.APP.testAuthToggle()          - Test toggle functionality')
 }
 
