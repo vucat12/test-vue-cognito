@@ -69,16 +69,12 @@ export function useAuthHandler(type) {
 
 // Export a dynamic handler that always points to the current one
 export const authHandler = {
+  ...currentHandler,
   login: (...args) => currentHandler.login(...args),
   signup: (...args) => currentHandler.signup(...args),
   logout: (...args) => currentHandler.logout(...args),
   restoreSession: (...args) => currentHandler.restoreSession(...args),
   handleCallback: (...args) => currentHandler.handleCallback(...args),
-  refreshToken: (...args) => currentHandler.refreshToken(...args),
-  getCurrentUser: (...args) => currentHandler.getCurrentUser(...args),
-  validateToken: (...args) => currentHandler.validateToken(...args),
-  // Dev-only methods (will only work when dev handler is active)
-  mockUserRole: (...args) => currentHandler.mockUserRole?.(...args),
 }
 
 // Re-export for explicit imports if needed
