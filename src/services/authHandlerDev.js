@@ -23,7 +23,7 @@ const User = {
   "email": "18520515@gm.uit.edu.vn",
   "role": "creator",
   "kycPassed": true,
-  "onboardingPassed": true,
+  "onboardingPassed": false,
   "raw": {
     "custom:kyc": "true",
     "sub": "97c45ac8-70e1-7093-2a13-c492458b486c",
@@ -176,12 +176,17 @@ export const authHandlerDev = {
 
   async restoreSession() {
     try {
+
+      console.log("Restoring session...");
+
       // In production: validates Cognito tokens from localStorage
       // In dev: restore session from persisted Pinia store or mock tokens
       const auth = useAuthStore()
 
       // First try to restore from localStorage (like production)
       auth.refreshFromStorage()
+
+      console.log("auth.idToken", auth.idToken);
 
       // Check if we have a valid session after refresh
       if (auth.currentUser && auth.idToken) {
@@ -287,6 +292,22 @@ export const authHandlerDev = {
 
       return false
     }
+  },
+
+  async updateProfileAttributes(attributes) {
+    const auth = useAuthStore()
+    if (!auth.currentUser) {
+      console.warn('[AUTH-DEV] No user is currently logged in')
+      return false
+    }
+
+    // Simulate a network request to update user attributes
+    await new Promise(resolve => setTimeout(resolve, 100))
+
+    // Update the user attributes in the store
+    auth.updateUserAttributesLocally(attributes)
+    console.log('[AUTH-DEV] User attributes updated:', attributes)
+    return true
   },
 
   async getCurrentUser() {

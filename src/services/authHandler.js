@@ -75,6 +75,7 @@ export const authHandler = {
   logout: (...args) => currentHandler.logout(...args),
   restoreSession: (...args) => currentHandler.restoreSession(...args),
   handleCallback: (...args) => currentHandler.handleCallback(...args),
+  updateProfileAttributes: (...args) => currentHandler.updateProfileAttributes(...args)
 }
 
 // Re-export for explicit imports if needed
